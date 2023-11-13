@@ -31,7 +31,7 @@ const generateStars = (count: number, canvasWidth: number, canvasHeight: number)
     stars.push({
       x: Math.random() * canvasWidth,
       y: Math.random() * canvasHeight,
-      velocity: Math.random() * 2 + 1, // Random velocity for each star
+      velocity: Math.random() * 2 + 1, // brzina zvjezdica
     });
   }
   return stars;
@@ -54,13 +54,13 @@ export default function Asteroids() {
     img.src = '/spaceship.png'; //učitala posebnu sliku za igrača
     spaceshipImage.current = img;
     const asteroidImg = new Image();
-    asteroidImg.src = '/asteroid.png'; // Adjust this path to your asteroid image
+    asteroidImg.src = '/asteroid.png'; //posebna slika za asteroide
     asteroidImage.current = asteroidImg;
     const canvas = canvasRef.current;
     if (canvas) {
       const canvasWidth = window.innerWidth;
       const canvasHeight = window.innerHeight;
-      setStars(generateStars(100, canvasWidth, canvasHeight)); // Generate 100 stars
+      setStars(generateStars(100, canvasWidth, canvasHeight)); //stvaranje 100 zvjezdica
     }
     const handleUnload = () => {
       localStorage.removeItem('bestTime'); 
@@ -76,6 +76,7 @@ export default function Asteroids() {
   }, []);
 
   const handleKeyDown = (event: KeyboardEvent) => {
+    //reakcija na tipke, rotaciju sam htjela omoguciti kako bi se vidjelo da brod ide bas u tom nekom smjeru
     switch (event.key) {
       case 'ArrowLeft':
         setRotation(-90);
@@ -182,10 +183,11 @@ export default function Asteroids() {
   const [gameOver, setGameOver] = useState(false);
 
   const checkCollision = (player: IPlayer, asteroid: IAsteroid) => {
-    const scaleFactor = 2; // samo da mogu malo povećati sliku
+    const scaleFactor = 2; 
     const scaleFactor2 = 1.5;
     let playerRadius = 0;
     let asteroidRadius = 0;
+    //s obzirom da slike nisu pravilnog oblika, za koliziju su bili potrebni izračuni
     if(rotation === 180 || rotation === 90) {
       playerRadius = Math.min(player.width, player.height) * scaleFactor / 3;
       asteroidRadius = Math.min(asteroid.width, asteroid.height) * scaleFactor2 / 3;
@@ -224,7 +226,7 @@ export default function Asteroids() {
           let newX = asteroid.x + asteroid.velocity.x;
           let newY = asteroid.y + asteroid.velocity.y;
   
-          // Wrap around the canvas
+          // Da omogućim prijelaz preko jednog ruba na suprotni
           if (newX < -asteroid.width) {
             newX = window.innerWidth;
           } else if (newX > window.innerWidth) {
@@ -270,7 +272,7 @@ export default function Asteroids() {
         if (ctx) {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-          // Draw stars
+          // prvo se radi iscrtkavanje zvjezdica a potom svemirskog broda i asteroida
           ctx.fillStyle = 'white';
           stars.forEach(star => {
             ctx.beginPath();
@@ -302,6 +304,7 @@ export default function Asteroids() {
   }, [player, asteroids, rotation]);
 
   const formatTime = (time: number): string => {
+    //samo za trazeno formatiranje vremena
     const minutes = Math.floor(time / 60000);
     const seconds = Math.floor((time % 60000) / 1000);
     const milliseconds = time % 1000;
@@ -313,7 +316,7 @@ export default function Asteroids() {
       setStars(prevStars => 
         prevStars.map(star => ({
           ...star,
-          y: (star.y + star.velocity) % window.innerHeight, // Update each star's position
+          y: (star.y + star.velocity) % window.innerHeight, //ažuriranje pozicija zvjezdica u pozadini
         }))
       );
       requestAnimationFrame(updateStars);

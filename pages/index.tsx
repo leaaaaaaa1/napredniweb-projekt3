@@ -116,7 +116,7 @@ export default function Asteroids() {
     let x = 0, y = 0;
     let velocityX = 0, velocityY = 0;
   
-    const speed = Math.random() * 8 + 1; // brzina
+    const speed = Math.random() * 12 + 1; // brzina
   
     switch(side) {
       case 0: // npr da ulaze u scenu s lijeve strane, itd..

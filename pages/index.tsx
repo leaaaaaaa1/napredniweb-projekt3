@@ -325,6 +325,7 @@ export default function Asteroids() {
     <div className={styles.container}>
       <canvas ref={canvasRef} className={styles.gameCanvas}></canvas>
       <div className={styles.timer}>Time: {formatTime(currentTime)}</div>
+      <div className={styles.bestTime}>Best Time: {formatTime(bestTime)}</div>
       {gameOver && (
         <div className={styles.overlay}>
           <div className={styles.form}>

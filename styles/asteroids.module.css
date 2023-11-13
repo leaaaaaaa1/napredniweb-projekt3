@@ -1,0 +1,71 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.gameCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 10;
+}
+
+.form {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  max-width: 800px;
+  width: 90%;
+}
+
+.heading {
+  color: rgba(0, 8, 227, 0.876);
+  margin-bottom: 20px;
+}
+
+.submitBtn {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: rgba(0, 8, 227, 0.496);
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.submitBtn:hover {
+  background-color: rgba(0, 8, 227, 0.764);
+}
+
+.timer,
+.bestTime {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 15;
+}
+
+.bestTime {
+  top: 50px;
+}

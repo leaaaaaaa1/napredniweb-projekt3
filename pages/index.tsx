@@ -300,12 +300,16 @@ export default function Asteroids() {
           const scaleFactor2 = 1.5;
           if(spaceshipImage.current) {
             //iscrtkavanje slike s određenim skaliranjem i centriranjem
+            ctx.shadowBlur = 20; //dodala sam crvene sjene da bi se vidjele bolje
+            ctx.shadowColor = "#ff0000";
             ctx.drawImage(spaceshipImage.current, -player.width, -player.height, player.width * scaleFactor, player.height * scaleFactor);
           }
           ctx.restore();
           asteroids.forEach(asteroid => {
             if(asteroidImage.current) {
               //iscrtkavanje asteroida, svaki prema njegovoj poziciji
+              ctx.shadowBlur = 20;  //dodala sam crvene sjene da bi se vidjele bolje
+              ctx.shadowColor = "#ff0000";
               ctx.drawImage(asteroidImage.current, asteroid.x, asteroid.y, asteroid.width * scaleFactor2, asteroid.height * scaleFactor2);
             }
           });

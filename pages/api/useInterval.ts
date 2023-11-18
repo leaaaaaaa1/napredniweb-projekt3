@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+//na kraju ovo nije ni koristeno kako je zamisljeno, htjela sam ici u ovom smjeru buduci da sam nesto slicno
+//radila za zavrsni rad ali nije bilo potrebno
 export function useInterval(callback: () => void, delay: number | null) {
   const savedCallback = useRef<(() => void) | null>(null);
 

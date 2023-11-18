@@ -221,8 +221,6 @@ export default function Asteroids() {
 
   useEffect(() => {
     const gameLoop = () => {
-      if (gameOver) return; //ako je doslo do sudara igra se zaustavlja
-  
       const direction = directionRef.current;
       //prema trenutnoj poziciji azuriram poziciju igraca (direction je sada trenutna)
       setPlayer(prevPlayer => ({
